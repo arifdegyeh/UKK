@@ -18,9 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo(function ($request) {
             $user = $request->user();
             if ($user && $user->role === 'admin') {
-                return route('dasboard');
+                return route('dashboard');
             }
-            return route('dasboard.siswa');
+            return route('dashboard.siswa');
         });
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -613,7 +613,7 @@
         <!-- Menu Navigasi -->
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="{{ route('dasboard.siswa') }}">
+                <a href="{{ route('dashboard.siswa') }}">
                     <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
                 </a>
             </li>
@@ -811,7 +811,7 @@
                      ============================ -->
                 <div class="form-actions">
                     <!-- Tombol Kembali -->
-                    <a href="{{ route('dasboard.siswa') }}" class="btn btn-secondary">← Kembali</a>
+                    <a href="{{ route('dashboard.siswa') }}" class="btn btn-secondary">← Kembali</a>
 
                     <!-- Tombol Kirim Aspirasi -->
                     <button type="submit" class="btn btn-primary">Kirim Aspirasi →</button>

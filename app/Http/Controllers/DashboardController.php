@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Aspirasi;
 use App\Models\User;
 use App\Models\Kategori;
@@ -35,11 +36,23 @@ class DashboardController extends Controller
     }
 
     /**
+     * Display the authenticated user's dashboard based on role.
+     */
+    public function dashboard()
+    {
+        $user = Auth::user();
+
+        return $user->role === 'admin'
+            ? $this->index()
+            : $this->siswa();
+    }
+
+    /**
      * Display the student dashboard.
      */
     public function siswa()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $totalAspirasi = Aspirasi::where('siswa_id', $user->id)->count();
         $pendingAspirasi = Aspirasi::where('siswa_id', $user->id)->where('status', 'pending')->count();
         $prosesAspirasi = Aspirasi::where('siswa_id', $user->id)->where('status', 'proses')->count();
@@ -50,7 +63,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        return view('siswa.dasboard', compact(
+        return view('siswa.dashboard', compact(
             'totalAspirasi',
             'pendingAspirasi',
             'prosesAspirasi',
@@ -64,7 +77,7 @@ class DashboardController extends Controller
      */
     public function notifikasi()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $aspirasiList = Aspirasi::with(['kategori', 'feedbacks.admin'])
             ->where('siswa_id', $user->id)
             ->latest('updated_at')
@@ -78,7 +91,7 @@ class DashboardController extends Controller
      */
     public function profil()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $totalAspirasi = Aspirasi::where('siswa_id', $user->id)->count();
         $pendingAspirasi = Aspirasi::where('siswa_id', $user->id)->where('status', 'pending')->count();
         $prosesAspirasi = Aspirasi::where('siswa_id', $user->id)->where('status', 'proses')->count();

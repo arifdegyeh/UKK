@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Aspirasi;
 use App\Models\Kategori;
 use App\Models\Feedback;
@@ -45,12 +46,12 @@ class AspirasiController extends Controller
 
         if ($request->hasFile('lampiran')) {
             foreach ($request->file('lampiran') as $file) {
-                $lampiranPaths[] = $file->store('aspirasi-lampiran', 'public');
+                $lampiranPaths[] = $file->store('img', 'public');
             }
         }
 
         Aspirasi::create([
-            'siswa_id' => auth()->id(),
+            'siswa_id' => Auth::id(),
             'kategori_id' => $request->kategori_id,
             'judul' => $request->judul,
             'lokasi' => $request->lokasi,
@@ -59,7 +60,7 @@ class AspirasiController extends Controller
             'lampiran' => count($lampiranPaths) > 0 ? $lampiranPaths : null,
         ]);
 
-        return redirect()->route('dasboard.siswa')->with('success', 'Aspirasi berhasil dikirim!');
+        return redirect()->route('dashboard.siswa')->with('success', 'Aspirasi berhasil dikirim!');
     }
 
     /**
@@ -68,7 +69,7 @@ class AspirasiController extends Controller
     public function index()
     {
         $aspirasis = Aspirasi::with(['kategori', 'feedbacks.admin'])
-            ->where('siswa_id', auth()->id())
+            ->where('siswa_id', Auth::id())
             ->latest()
             ->get();
         return view('siswa.aspirasi-saya', compact('aspirasis'));
@@ -102,7 +103,7 @@ class AspirasiController extends Controller
 
         Feedback::create([
             'aspirasi_id' => $aspirasi->id,
-            'admin_id' => auth()->id(),
+            'admin_id' => Auth::id(),
             'komentar' => $request->komentar,
         ]);
 

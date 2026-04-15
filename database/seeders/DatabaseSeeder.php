@@ -36,7 +36,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($kategoris as $kategori) {
-            Kategori::create($kategori);
+            Kategori::firstOrCreate(
+                ['nama' => $kategori['nama']],
+                ['deskripsi' => $kategori['deskripsi']]
+            );
         }
     }
 }

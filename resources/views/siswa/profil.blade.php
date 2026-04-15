@@ -468,7 +468,7 @@
             </div>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item"><a href="{{ route('dasboard.siswa') }}"><span class="nav-icon"><i
+            <li class="nav-item"><a href="{{ route('dashboard.siswa') }}"><span class="nav-icon"><i
                             data-lucide="layout-dashboard"></i></span> Dashboard</a>
             </li>
             <li class="nav-item"><a href="{{ route('aspirasi.create') }}"><span class="nav-icon"><i

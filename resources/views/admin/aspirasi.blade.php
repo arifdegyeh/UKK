@@ -574,7 +574,7 @@
             </div>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item"><a href="{{ route('dasboard') }}"><span class="nav-icon"><i
+            <li class="nav-item"><a href="{{ route('dashboard.admin') }}"><span class="nav-icon"><i
                             data-lucide="layout-dashboard"></i></span> Dashboard</a></li>
             <li class="nav-item"><a href="{{ route('admin.aspirasi') }}" class="active"><span class="nav-icon"><i
                             data-lucide="lightbulb"></i></span>
@@ -691,11 +691,11 @@
                                                     <div class="lampiran-wrap">
                                                         @foreach($aspirasi->lampiran as $path)
                                                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                                                <a href="{{ asset('storage/' . $path) }}" target="_blank">
-                                                                    <img src="{{ asset('storage/' . $path) }}" class="lampiran-img"
+                                                                <a href="{{ asset('storage/' . ltrim($path, '/')) }}" target="_blank">
+                                                                    <img src="{{ asset('storage/' . ltrim($path, '/')) }}" class="lampiran-img"
                                                                         alt="Lampiran">
                                                                 </a>
-                                                                <a href="{{ asset('storage/' . $path) }}" target="_blank"
+                                                                <a href="{{ asset('storage/' . ltrim($path, '/')) }}" target="_blank"
                                                                     class="lampiran-item"><i data-lucide="paperclip"
                                                                         style="width:0.75rem;height:0.75rem;display:inline;vertical-align:middle;"></i>
                                                                     Buka Foto</a>

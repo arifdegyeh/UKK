@@ -501,7 +501,7 @@
             </div>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item"><a href="{{ route('dasboard') }}"><span class="nav-icon"><i
+            <li class="nav-item"><a href="{{ route('dashboard.admin') }}"><span class="nav-icon"><i
                             data-lucide="layout-dashboard"></i></span> Dashboard</a></li>
             <li class="nav-item"><a href="{{ route('admin.aspirasi') }}"><span class="nav-icon"><i
                             data-lucide="lightbulb"></i></span> Aspirasi</a>
